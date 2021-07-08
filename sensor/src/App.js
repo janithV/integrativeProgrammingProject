@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import SigninScreen from './Screens/SignInScreen';
+import RegisterScreen from './Screens/RegisterScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="grid-containe">
+        <header className="row">
+
+        </header>
+        <main>
+          <h1>Temperature Sensor</h1>
+
+          <Route path="" component={SigninScreen}></Route>
+          <Route path="" component={RegisterScreen}></Route>
+
+
+        </main>
+        <footer>
+
+        </footer>
+      </div>
+
+    </BrowserRouter>
+    
   );
 }
 
