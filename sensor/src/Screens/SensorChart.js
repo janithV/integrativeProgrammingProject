@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Bar, Line, Pie} from 'react-chartjs-2';
-import './sensorChart.css'
+import '../index.css'
 
 class SensorChart extends Component{
     constructor(props){
