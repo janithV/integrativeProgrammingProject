@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import SigninScreen from './Screens/SignInScreen';
 import RegisterScreen from './Screens/RegisterScreen';
+import sensorChartActions from './actions/sensorChartActions';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 
           <Route path="" component={SigninScreen}></Route>
           <Route path="" component={RegisterScreen}></Route>
+          <Route path="" component={sensorChartActions}></Route>
 
 
         </main>
