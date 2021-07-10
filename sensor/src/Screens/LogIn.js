@@ -2,7 +2,6 @@ import React,{useState} from 'react';
 import Axios from 'axios';
 import Swal from 'sweetalert2';
 import {useHistory} from 'react-router-dom';
-import jwtDecode from "jwt-decode";
 
 function LogIn() {
 
