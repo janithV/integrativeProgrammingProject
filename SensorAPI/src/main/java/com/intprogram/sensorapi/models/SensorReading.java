@@ -1,5 +1,6 @@
 package com.intprogram.sensorapi.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +13,9 @@ public class SensorReading {
 
     @Id
     private int readingId;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date date;
     private double value;
 
@@ -24,6 +28,26 @@ public class SensorReading {
         this.date = date;
         this.value = value;
         this.sensor=sensor;
+    }
+
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public void setReadingId(int readingId) {
+        this.readingId = readingId;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
     }
 
     public int getReadingId() {

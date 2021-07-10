@@ -42,6 +42,7 @@ public class UserController {
             return HttpStatus.OK;
 
         } catch (Exception e) {
+            System.out.println(e.toString());
             return HttpStatus.BAD_REQUEST;
         }
     }

@@ -23,6 +23,7 @@ public class SensorController {
 
     @GetMapping("/getallsensors")
     private List<Sensor> getAllsensors(){
+
         return service.getAllSensors();
     }
 

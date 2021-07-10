@@ -18,8 +18,8 @@ public class User {
     private String email;
     private int contactNo;
 
-    public User(int userId, String userName, String password, String email, int contactNo) {
-        this.userId = userId;
+    public User(int id, String userName, String password, String email, int contactNo) {
+        this.userId=id;
         this.userName = userName;
         this.password = password;
         this.email = email;
