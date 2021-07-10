@@ -2,7 +2,6 @@ import React,{useState} from 'react';
 import Axios from 'axios';
 import Swal from 'sweetalert2';
 import {useHistory} from 'react-router-dom';
-import jwtDecode from "jwt-decode";
 
 function LogIn() {
 
@@ -26,38 +25,22 @@ function LogIn() {
     Axios
       .post(url, loginData)
       .then((res) => {
-        localStorage.setItem("token", res.data.jwt);
+       if(res.data === "OK"){
         Swal.fire({
             icon: 'success',
-            title: `${res.data.msg}`,
+            title: "Loged In Successfully",
           })
-      })
-      .then(() => {
-        const jwt = localStorage.getItem("token");
-        let type = jwtDecode(jwt).user_Type;
-        if(type === "Customer"){
-            //history.push("/");
-            window.location = "/";
-        }
-        else if(type === "Admin"){
-            //history.push("/owner-main-page");
-            window.location = "/owner-main-page";
-        }
-        else if(type === "Delivery Staff"){
-            //history.push("/owner-main-page");
-            window.location = "/deliveryStaff-main-page";
-        }
-
-
-      })
-      .catch((e) => {
+          history.push('/SensorChart')
+      }
+      else {
         Swal.fire({
             icon: 'info',
             title: 'Invalid Login',
             text: 'Check Your Email and Password',
           })
-      });
-  };
+      };
+  })
+};
 
 
     return (
