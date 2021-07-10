@@ -1,8 +1,6 @@
 package com.intprogram.sensorapi.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.intprogram.sensorapi.dao.UserDao;
-import com.intprogram.sensorapi.models.Sensor;
 import com.intprogram.sensorapi.models.User;
 import com.intprogram.sensorapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
