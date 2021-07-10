@@ -1,29 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import SigninScreen from './Screens/SignInScreen';
-import RegisterScreen from './Screens/RegisterScreen';
-import sensorChart from './Screens/SensorChart';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import SignUp from './Screens/SignUp'; 
+import LogIn from './Screens/LogIn';
+import sensorChartActions from './actions/sensorChartActions';
 import AlertList from './Screens/AlertList';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="grid-container">
-        <header className="row">
+        <Switch>
+        <Route path="/" exact component={SignUp}></Route>
+        <Route path="/login" exact component={LogIn}></Route> 
+        <Route path="" component={sensorChartActions}></Route>
+        <Route path="" component={AlertList}></Route>
 
-        </header>
-        <main>
-          <h1>Temperature Sensor</h1>
-
-          <Route path="/" component={SigninScreen}></Route>
-          <Route path="/register" component={RegisterScreen}></Route>
-          <Route path="/sensorchart" component={sensorChart}></Route>
-          <Route path="/alert" component={AlertList}></Route>
-        </main>
-        <footer>
-
-        </footer>
-      </div>
+        </Switch>
 
     </BrowserRouter>
     
