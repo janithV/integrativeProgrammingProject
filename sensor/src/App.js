@@ -8,8 +8,6 @@ import AlertList from './Screens/AlertList';
 function App() {
   return (
     <BrowserRouter>
-         
-         
         <Switch>
         <Route path="/" exact component={SignUp}></Route>
         <Route path="/login" exact component={LogIn}></Route> 
