@@ -1,6 +1,6 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers,compose,applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import {userRegisterReducer, userSigninReducer} from './reducers/userReducers';
+import {userRegisterReducer, userSigninReducer} from './reducers/userReducer';
 
 const initialState = {
   userSignin: {
