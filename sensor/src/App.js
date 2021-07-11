@@ -11,7 +11,7 @@ function App() {
         <Switch>
         <Route path="/" exact component={SignUp}></Route>
         <Route path="/login" exact component={LogIn}></Route> 
-        <Route path="" component={sensorChartActions}></Route>
+        <Route path="sensorchart" component={sensorChartActions}></Route>
         <Route path="" component={AlertList}></Route>
 
         </Switch>

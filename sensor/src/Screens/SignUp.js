@@ -6,14 +6,14 @@ import {useHistory} from 'react-router-dom';
 function SignUp() {
 
     const history = useHistory();
-    const url = 'http://localhost:5000/users/signup';
+    const url = 'http://localhost:8080/user/register';
     const [userData , setUserData] = useState({
 
         
-        user_name : "",
-        user_Contact : "", 
-        user_Email : "",
-        user_Password : "",
+        userName : "",
+        contactNo : "", 
+        email : "",
+        password : "",
 
     })
 
@@ -28,19 +28,20 @@ function SignUp() {
         e.preventDefault();
         Axios.post(url,{
             
-            user_name : userData.user_name,
-            user_Contact : userData.user_Contact, 
-            user_Email : userData.user_Email,
-            user_Password : userData.user_Password
-
+            userName : userData.userName,
+            password : userData.password,
+            email : userData.email,
+            contactNo : userData.contactNo
+            
+            
         })
         .then((res)=>{
-            if(res.data === "User Added!"){
+            if(res.data === "OK"){
                 Swal.fire({
                   icon: 'success',
                   title: 'Registered In Successfully!',
                 })
-                history.push('/sensorChart');       
+                history.push('/sensorchart');       
         
             }
 
@@ -55,6 +56,7 @@ function SignUp() {
 
         })
         .catch((e) => {
+            console.log(e);
             Swal.fire({
                 icon: 'info',
                 title: 'Already Registered',
@@ -84,9 +86,9 @@ function SignUp() {
                    <div className="name">
                             <label className="label">User Name</label>
                             <input className="input"
-                            id="user_name"  
+                            id="userName"  
                             onChange={(e) => handleChange(e)}  
-                            value={userData.user_name} 
+                            value={userData.userName} 
                             type="text" 
                             placeholder="User Name"/>
                         
@@ -96,9 +98,9 @@ function SignUp() {
                     <div className="email">
                             <label className="label">Email Address</label>
                             <input className="input"
-                            id="user_Email"  
+                            id="email"  
                             onChange={(e) => handleChange(e)}  
-                            value={userData.user_Email} 
+                            value={userData.email} 
                             type="Email" 
                             placeholder="Email Address"/>  
                             
@@ -107,9 +109,9 @@ function SignUp() {
                         <div className="phone">
                             <label className="label">Mobile Number</label>
                             <input className="input"  
-                            id="user_Contact"
+                            id="contactNo"
                             onChange={(e) => handleChange(e)}  
-                            value={userData.user_Contact} 
+                            value={userData.contactNo} 
                             type="text" 
                             placeholder="Mobile Number"/> 
                             </div>
@@ -117,9 +119,9 @@ function SignUp() {
                    <div className="password">
                             <label className="label">Password</label>
                             <input className="input" 
-                            id="user_Password" 
+                            id="password" 
                             onChange={(e) => handleChange(e)}  
-                            value={userData.user_Password} 
+                            value={userData.password} 
                             type="password" 
                             placeholder="Password"/>  
                             </div>

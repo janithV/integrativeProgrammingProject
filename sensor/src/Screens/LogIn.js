@@ -6,33 +6,39 @@ import {useHistory} from 'react-router-dom';
 function LogIn() {
 
     const history = useHistory();
-    const url = 'http://localhost:5000/users/login';
+    const url = 'http://localhost:8080/user/login';
     const [loginData, setloginData] = useState({
-        user_Email: "",
-        user_Password: "",
+        email: "",
+        password: "",
       });
 
     function handleChange(e) {
         const newLoginData = {...loginData};
         newLoginData[e.target.id] = e.target.value;
         setloginData(newLoginData);
-        console.log(newLoginData)
+        // console.log(newLoginData)
     }
 
     //Login User
   const handleSubmit = async (e) => {
+      console.log(loginData);
     e.preventDefault();
-    Axios
-      .post(url, loginData)
+
+    await Axios.post(url, {
+          email : loginData.email,
+          password : loginData.password,
+      })
       .then((res) => {
        if(res.data === "OK"){
+           console.log("succes");
         Swal.fire({
             icon: 'success',
             title: "Loged In Successfully",
           })
-          history.push('/SensorChart')
+          history.push('/sensorchart')
       }
       else {
+        console.log("su");
         Swal.fire({
             icon: 'info',
             title: 'Invalid Login',
@@ -60,9 +66,10 @@ function LogIn() {
 
             <div className="email">
                     <label className="label">Email Address</label>
-                    <input className="input"  
+                    <input className="input" 
+                    id="email" 
                     onChange={(e) => handleChange(e)}  
-                    value={loginData.user_Email} 
+                    value={loginData.email} 
                     type="Email" 
                     placeholder="Email Address"  />
                     </div>
@@ -70,8 +77,9 @@ function LogIn() {
             <div className="email">
                     <label className="label">Password</label>
                     <input className="input"  
+                    id="password"
                     onChange={(e) => handleChange(e)}  
-                    value={loginData.user_Password} 
+                    value={loginData.password} 
                     type="password" 
                     placeholder="Password"/>
                     </div>
