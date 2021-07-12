@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     private HttpStatus login(@RequestBody JsonNode payload){
         String email = payload.get("email").asText();
         String password= payload.get("password").asText();
