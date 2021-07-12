@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(originPatterns = "http://localhost:8080", allowedHeaders = "*")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -16,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     private HttpStatus login(@RequestBody JsonNode payload){
         String email = payload.get("email").asText();
         String password= payload.get("password").asText();

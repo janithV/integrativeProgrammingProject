@@ -25,7 +25,14 @@ public class SensorReadingService {
     }
 
     public List<SensorReading> getAllReadingsById(int id){
-        return dao.getReadingsById(id);
+        System.out.println("inside service");
+        List<SensorReading> readings =dao.getReadingsById(id);
+        System.out.println(readings);
+        return readings;
+    }
+
+    public List<Double> getAllTemperatureById(int id){
+        return dao.getTemperaturesById(id);
     }
 
 

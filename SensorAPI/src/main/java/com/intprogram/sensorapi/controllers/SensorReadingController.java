@@ -35,12 +35,19 @@ public class SensorReadingController {
 
     @GetMapping("/getAllReadings")
     private List<SensorReading> getAllReadings(){
+
         return service.getAllReadings();
     }
 
     @GetMapping("/getAllReadings/{id}")
     private List<SensorReading> getAllReadingsById(@PathVariable int id){
+        System.out.println("inside endpoint");
         return service.getAllReadingsById(id);
+    }
+
+    @GetMapping("/getAllTemps/{id}")
+    private List<Double> getAllTemperature(@PathVariable int id){
+        return service.getAllTemperatureById(id);
     }
 
 

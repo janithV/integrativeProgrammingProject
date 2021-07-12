@@ -1,12 +1,14 @@
 package com.intprogram.sensorapi.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @NoArgsConstructor
 @Table(name = "sensorreading")
 public class SensorReading {
@@ -19,7 +21,7 @@ public class SensorReading {
     private Date date;
     private double value;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "sensor_id",nullable = false)
     private Sensor sensor;
 

@@ -20,7 +20,7 @@ public class SensorAlert {
 
     private double value;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "sensor_id", nullable = false)
     private Sensor sensor;
 
