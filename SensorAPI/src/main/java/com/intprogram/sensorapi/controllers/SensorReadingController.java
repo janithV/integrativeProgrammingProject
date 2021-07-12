@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/sensorreading")
 public class SensorReadingController {
@@ -24,31 +25,25 @@ public class SensorReadingController {
     private SensorAlertService alertService;
 
     @PostMapping("/addreading")
-    private HttpStatus addReading(@RequestBody SensorReading reading){
-           if(reading.getValue()>reading.getSensor().getThreshold()){
-               SensorAlert alert = new SensorAlert(reading.getDate(),reading.getValue(),"Alert!",reading.getSensor());
-               alertService.addReading(alert);
-           }
-            service.addReading(reading);
-            return HttpStatus.OK;
+    private HttpStatus addReading(@RequestBody SensorReading reading) {
+        if (reading.getValue() > reading.getSensor().getThreshold()) {
+            SensorAlert alert = new SensorAlert(reading.getDate(), reading.getValue(), "Alert!", reading.getSensor());
+            alertService.addReading(alert);
+        }
+        service.addReading(reading);
+        return HttpStatus.OK;
     }
 
     @GetMapping("/getAllReadings")
-    private List<SensorReading> getAllReadings(){
+    private List<SensorReading> getAllReadings() {
 
         return service.getAllReadings();
     }
 
     @GetMapping("/getAllReadings/{id}")
-    private List<SensorReading> getAllReadingsById(@PathVariable int id){
+    private List<SensorReading> getAllReadingsById(@PathVariable int id) {
         System.out.println("inside endpoint");
         return service.getAllReadingsById(id);
     }
-
-    @GetMapping("/getAllTemps/{id}")
-    private List<Double> getAllTemperature(@PathVariable int id){
-        return service.getAllTemperatureById(id);
-    }
-
 
 }

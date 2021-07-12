@@ -1,56 +1,102 @@
-import React, { Component } from 'react';
-import '../index.css';
-import SensorChart from '../Screens/SensorChart';
+import React, { useState, useEffect } from "react";
+import "../index.css";
+import SensorChart from "../Screens/SensorChart";
+import axios from "axios";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import moment from "moment";
 
-class sensorChartActions extends Component {
-    constructor(){
-    super();
-    this.state = {
-        chartData:{}
-    }
-    }
+function SensorChartActions(props) {
+  const [sensorData, setSensorData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "Temperature",
+        data: [],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.6)",
+          "rgba(54, 162, 235, 0.6)",
+          "rgba(255, 206, 86, 0.6)",
+          "rgba(75, 192, 192, 0.6)",
+          "rgba(153, 102, 255, 0.6)",
+          "rgba(255, 159, 64, 0.6)",
+          "rgba(255, 99, 132, 0.6)",
+        ],
+      },
+    ],
+  });
 
-    componentWillMount(){
-        this.getChartData();
-    }
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/sensor/getallsensors", {
+        method: "GET",
+      })
+      .then((res) => {
+        setSensorData(res.data);
+      });
+  }, []);
 
-    getChartData(){
-        this.setState({
-        chartData:{
-            labels: ['time 1', 'time 2', 'time 3', 'time 4', 'time 5', 'time 6'],
-            datasets:[
-            {
-                label:'Temperature',
-                data:[
-                617594,
-                181045,
-                153060,
-                106519,
-                105162,
-                95072
-                ],
-                backgroundColor:[
-                'rgba(255, 99, 132, 0.6)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)',
-                'rgba(255, 99, 132, 0.6)'
-                ]
-            }
-            ]
+  const handleOnSelect = (event, data) => {
+    setSelectedOption({label: event.label, value: event.value});
+    axios
+      .get(
+        `http://localhost:8080/sensorreading/getAllReadings/${event.value}`,
+        {
+          method: "GET",
         }
+      )
+      .then((res) => {
+        const labels = res.data.map((item) => moment(item.date).format('LLL'));
+        const values = res.data.map((item) => item.value);
+        const datasets = [
+          {
+            label: "Temperature",
+            data: values,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.6)",
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+              "rgba(255, 159, 64, 0.6)",
+              "rgba(255, 99, 132, 0.6)",
+            ],
+          },
+        ];
+        setChartData({
+          ...chartData,
+          datasets,
+          labels,
         });
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-    render() {
-        return (
-        <div className="App">
-            <SensorChart chartData={this.state.chartData} TempType="Outdoor" legendPosition="bottom"/>
+  return (
+    <div>
+        <div className="chart-dropdown">
+            <label>Select the Sensor: </label>
+            <Dropdown
+                options={sensorData.map((val) => ({
+                label: val.id,
+                value: val.id,
+                }))}
+                onChange={handleOnSelect}
+                value={selectedOption}
+                placeholder="Select option"
+            />
         </div>
-        );
-    }
+      <SensorChart
+        chartData={chartData}
+        TempType="Outdoor"
+        legendPosition="bottom"
+      />
+    </div>
+  );
 }
 
-export default sensorChartActions;
+export default SensorChartActions;
