@@ -107,4 +107,13 @@ button:active {
 
 .alert-btn{
   margin: 30px;
+  float: right;
+}
+
+.alertbtnname{
+  color:#fff;
+}
+
+.alert-btn :hover{
+  color: #fff;
 }
