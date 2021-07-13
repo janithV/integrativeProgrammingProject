@@ -117,3 +117,18 @@ button:active {
 .alert-btn :hover{
   color: #fff;
 }
+
+.btn-sensor{
+  color: #fff;
+}
+
+
+.container1{
+  background: aqua;
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
