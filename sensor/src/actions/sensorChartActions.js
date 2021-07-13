@@ -5,6 +5,8 @@ import axios from "axios";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import moment from "moment";
+import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom'
 
 function SensorChartActions(props) {
   const [sensorData, setSensorData] = useState([]);
@@ -78,7 +80,7 @@ function SensorChartActions(props) {
 
   return (
     <div>
-      
+      <Button className="alert-btn" variant="contained" color="primary"><Link to={"/sensorAlert"}>View Alerts</Link></Button>
 
         <div className="chart-dropdown">
             <label>Select the Sensor: </label>
