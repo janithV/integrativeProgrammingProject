@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Alert from "./Alert";
+import {Link} from 'react-router-dom';
+
 
 const Sensor = (props) => ( 
   <li>
@@ -9,9 +11,6 @@ const Sensor = (props) => (
   </a>
 </li>
 );
-
-
-
 
 function AlertList(props) {
 
@@ -63,7 +62,16 @@ function AlertList(props) {
   };
 
   return (
-    <div className="container">
+    <div>
+      <br/>
+      <br/>
+      <div className="row">        
+        <div className="col-4 ">
+          <button className="btn btn-primary" type="submit"><Link className="btn-sensor"  to={"/sensorchart"}> View Sensor Charts</Link> </button>
+        </div>         
+
+      </div>
+
       <div className="row">
         <div className="dropdown mb-4">
           <button
@@ -81,6 +89,10 @@ function AlertList(props) {
           </ul>
         </div>
       </div>
+      
+     
+    <div className="container1" >     
+ 
 
       <br />
       <div className="row">
@@ -105,6 +117,8 @@ function AlertList(props) {
           </div>
         </div>
       </div>
+      </div>
+    
     </div>
   );
 }
