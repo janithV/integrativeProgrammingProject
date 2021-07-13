@@ -78,6 +78,8 @@ function SensorChartActions(props) {
 
   return (
     <div>
+      
+
         <div className="chart-dropdown">
             <label>Select the Sensor: </label>
             <Dropdown
