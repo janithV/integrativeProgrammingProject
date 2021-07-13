@@ -32,6 +32,12 @@ public class SensorReading {
         this.sensor=sensor;
     }
 
+    public SensorReading(Date date, double value, Sensor sensor) {
+        this.date = date;
+        this.value = value;
+        this.sensor = sensor;
+    }
+
     public Sensor getSensor() {
         return sensor;
     }
