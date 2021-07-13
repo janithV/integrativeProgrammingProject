@@ -2,6 +2,7 @@ package com.intprogram.sensorapi.controllers;
 
 import com.intprogram.sensorapi.dao.SensorAlertDao;
 import com.intprogram.sensorapi.models.SensorAlert;
+import com.intprogram.sensorapi.services.EmailService;
 import com.intprogram.sensorapi.services.SensorAlertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ public class SensorAlertController {
 
     @Autowired
     private SensorAlertService service;
+
 
     @GetMapping("/getallalerts")
     private List<SensorAlert> getAllAlerts(){
