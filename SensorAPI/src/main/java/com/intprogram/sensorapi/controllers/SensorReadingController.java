@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/sensorreading")
 public class SensorReadingController {
@@ -42,6 +43,5 @@ public class SensorReadingController {
     private List<SensorReading> getAllReadingsById(@PathVariable int id){
         return service.getAllReadingsById(id);
     }
-
 
 }
