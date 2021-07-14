@@ -104,3 +104,7 @@ button:active {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.alert-btn{
+  margin: 30px;
+}
