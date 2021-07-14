@@ -80,7 +80,7 @@ function SensorChartActions(props) {
 
   return (
     <div>
-      <Button className="alert-btn" variant="contained" color="primary"><Link to={"/sensorAlert"}>View Alerts</Link></Button>
+      <Button className="alert-btn" variant="contained" color="primary"><Link to={"/alert"}>View Alerts</Link></Button>
 
         <div className="chart-dropdown">
             <label>Select the Sensor: </label>
